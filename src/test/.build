@@ -1,0 +1,45 @@
+{
+    "outfolder": "lib",
+    "projtype": ".cpp",
+    "profiles": {
+        "linux": {
+            "compiler": "g++",
+            "cxxFlags": [
+                "-std=c++17",
+                "-Wall",
+                "-g",
+                "-fPIC",
+                "-shared"
+            ],
+            "entrypoint": "test.cpp",
+            "ldFlags": [],
+            "outputName": "testlib.so"
+        },
+        "mac": {
+            "compiler": "g++",
+            "cxxFlags": [
+                "-std=c++17",
+                "-Wall",
+                "-g",
+                "-fPIC",
+                "-shared"
+            ],
+            "entrypoint": "test.cpp",
+            "ldFlags": [],
+            "outputName": "testlib.so"
+        },
+        "windows": {
+            "compiler": "cl.exe",
+            "cxxFlags": [
+                "/std:c++17",
+                "/W3", 
+                "/Zi", 
+                "/EHsc",
+                "/LD"
+            ],
+            "entrypoint": "test.cpp",
+            "ldFlags": [],
+            "outputName": "holybine.dll"
+        }
+    }
+}

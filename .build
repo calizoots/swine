@@ -1,0 +1,38 @@
+{
+    "entryPoint": "./src/main.cpp",
+    "objDir": "./target/obj",
+    "profiles": {
+        "linux": {
+            "compiler": "g++",
+            "cxxFlags": [
+                "-std=c++17"
+            ],
+            "ldFlags": [],
+            "outputName": "holybine"
+        },
+        "mac": {
+            "compiler": "g++",
+            "cxxFlags": [
+                "-std=c++17"
+            ],
+            "ldFlags": [],
+            "outputName": "holybine"
+        },
+        "windows": {
+            "compiler": "cl.exe",
+            "cxxFlags": [
+                "/std:c++17"
+            ],
+            "ldFlags": [],
+            "outputName": "holybine.exe"
+        }
+    },
+    "projType": ".cpp",
+    "srcDir": "./src",
+    "targetDir": "./target",
+    "watchDefExts": [
+        ".cpp",
+        ".h",
+        ".hpp"
+    ]
+}
