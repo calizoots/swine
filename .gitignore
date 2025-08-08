@@ -1,4 +1,9 @@
 .cache
 .clangd
+.ninja_log
+build.ninja
+compile_commands.json
+target/
+.DS_STORE
 
 swine

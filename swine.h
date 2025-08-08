@@ -777,7 +777,6 @@ ReflectStruct(BuildConfigProfiles, BuildConfigProfilesFields);
     X({".cpp", ".h", ".hpp"}) \
     X("./src/main.cpp") \
 
-
 ReflectStruct(BuildConfig, BuildConfigFields);
 
 constexpr const char* defaultSrcDir = "./src";
@@ -856,6 +855,7 @@ inline optional<vector<string>> arrayToStringVector(const Array& arr) {
 
 #define ModuleOptionFields(X) \
     X(string, outfolder) \
+    X(Array, addsources) \
     X(string, projtype) \
     X(Object, profiles) \
 

@@ -1,6 +1,7 @@
 {
     "outfolder": "lib",
     "projtype": ".cpp",
+    "addsources": ["./src/utils/utils.cpp"],
     "profiles": {
         "linux": {
             "compiler": "g++",
@@ -25,7 +26,7 @@
                 "-shared"
             ],
             "entrypoint": "test.cpp",
-            "ldFlags": [],
+            "ldFlags": [""],
             "outputName": "testlib.so"
         },
         "windows": {

@@ -1,7 +1,11 @@
 #include <iostream>
+#include "../utils/utils.h"
 
-int test(void) {
-    std::cout << "hello nig" << std::endl;
+extern "C" {
+    int test(void) {
+        std::cout << "hello nig" << std::endl;
+        testUtils();
 
-    return 0;
+        return 0;
+    }
 }

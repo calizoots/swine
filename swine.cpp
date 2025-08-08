@@ -1,3 +1,4 @@
+// @calizoots on github
 // c++ -std=c++17 -o swine swine.cpp
 
 #include "swine.h"
@@ -82,10 +83,19 @@ void GenerateFunc(int argc, char** argv) {
             file << "rule " << ruleName << "\n";
             file << "   command = " << moduleProfile.compiler << " $" << moduleCxxFlagsVar << " $" << moduleLdFlagsVar << " $in -o $out\n\n";
 
-            if (opts.outfolder.empty()) {
-                file << "build $target/" << moduleProfile.outputName << ": " << ruleName << " " << module.entryPoint << " ";
+            vector<string> moduleAdditionalSources;
+
+            if (auto opt = arrayToStringVector(opts.addsources)) {
+                moduleAdditionalSources = std::move(*opt);
             } else {
-                file << "build $target/" << opts.outfolder << "/" << moduleProfile.outputName << ": " << ruleName << " " << module.entryPoint;
+                SwineLog(ERR, "addsources in config are malformed");
+                exit(1);
+            }
+
+            if (opts.outfolder.empty()) {
+                file << "build $target/" << moduleProfile.outputName << ": " << ruleName << " " << module.entryPoint << " " <<  ConcatMacroList(moduleAdditionalSources);
+            } else {
+                file << "build $target/" << opts.outfolder << "/" << moduleProfile.outputName << ": " << ruleName << " " << module.entryPoint << " " << ConcatMacroList(moduleAdditionalSources);
             }
 
             file << "\n";
