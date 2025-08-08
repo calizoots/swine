@@ -2,8 +2,11 @@
 
 #ifndef SWINE_H
 #define SWINE_H
+#include <cstddef>
 #include <iterator>
 #include <string>
+#include <cstring>
+#include <algorithm>
 #include <optional>
 #include <iostream>
 #include <filesystem>
@@ -45,6 +48,7 @@ using std::to_string;
 using std::string_view;
 using std::istreambuf_iterator;
 using std::holds_alternative;
+using std::nullptr_t;
 using std::endl;
 using std::is_same_v;
 
