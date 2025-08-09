@@ -115,6 +115,10 @@ inline int DoesExistAndIsDir(const string& path) {
     return -1;
 }
 
+inline bool startsWith(const string& str, const string& prefix) {
+    return str.size() >= prefix.size() && str.compare(0, prefix.size(), prefix) == 0;
+}
+
 #define CheckDirCreateIfNot(dir) { \
     int res = DoesExistAndIsDir(dir); \
     if (res == 0) { \
@@ -983,8 +987,9 @@ static inline void BuildCompileCommands() {
         auto populateFiles = [&]() -> vector<string> { \
             vector<string> files; \
             for (const auto& entry : fs::recursive_directory_iterator(config.srcDir)) { \
-                for (const auto& ext : validExt) { \
-                    if (entry.path().extension() == ext) { \
+                for (const auto& allowed : validExt) { \
+                    auto ext = entry.path().extension(); \
+                    if (ext == allowed && !startsWith(ext, "._")) { \
                         string filePath = entry.path().string(); \
                         files.push_back(filePath); \
                         if (fileMod.find(filePath) == fileMod.end()) { \
