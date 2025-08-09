@@ -938,7 +938,9 @@ static inline FindDiscoveryRes SwineGetFiles() {
                 return fs::path(mod.entryPoint).parent_path().stem() == parentStemStr;
             });
 
-            if (entry.path().extension() == config.projType && !skip) {
+            auto ext = entry.path().extension();
+
+            if (ext == config.projType && startsWith(ext.string(), "._") && !skip) {
                 sources.push_back(entry.path().string());
             }
         }
