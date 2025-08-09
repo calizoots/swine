@@ -940,7 +940,9 @@ static inline FindDiscoveryRes SwineGetFiles() {
 
             auto ext = entry.path().extension();
 
-            if (ext == config.projType && !startsWith(ext.string(), "._") && !skip) {
+            bool ignore = startsWith(entry.path().filename().string(), "._");
+
+            if (ext == config.projType && !ignore && !skip) {
                 sources.push_back(entry.path().string());
             }
         }
@@ -990,8 +992,7 @@ static inline void BuildCompileCommands() {
             vector<string> files; \
             for (const auto& entry : fs::recursive_directory_iterator(config.srcDir)) { \
                 for (const auto& allowed : validExt) { \
-                    auto ext = entry.path().extension(); \
-                    if (ext == allowed && !startsWith(ext, "._")) { \
+                    if (entry.path().extension() == allowed && !startsWith(entry.path().filename().string(), "._")) { \
                         string filePath = entry.path().string(); \
                         files.push_back(filePath); \
                         if (fileMod.find(filePath) == fileMod.end()) { \
